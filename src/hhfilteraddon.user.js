@@ -1,10 +1,15 @@
 // ==UserScript==
-// @name         HH Artifacts - Artifacts/Accessories Presets + Factions
-// @namespace    http://tampermonkey.net/
-// @version      4.3
-// @description  Hardcoded artifact preset buttons in Artifacts mode, hardcoded faction buttons in Accessories mode
-// @match        *://*/*artifacts*
+// @name         HH Raid Optimiser – One-Click Filters (Presets + Factions)
+// @namespace    https://github.com/sirsanta2016
+// @icon         https://www.google.com/s2/favicons?sz=64&domain=hellhades.com
+// @version      1.0.1
+// @description  Adds one-click preset filters and faction selectors to the HellHades Raid Optimiser, making artifact and accessory management faster and easier.
+// @author       sirsanta2016
+// @match        https://raidoptimiser.hellhades.com/*
 // @run-at       document-idle
+// @homepageURL  https://github.com/sirsanta2016/hhFilterAddOn
+// @supportURL   https://github.com/sirsanta2016/hhFilterAddOn/issues
+// @license      MIT
 // @grant        none
 // ==/UserScript==
 

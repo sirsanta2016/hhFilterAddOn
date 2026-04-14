@@ -1,49 +1,54 @@
-# HH Filter AddOn
+# 🚀 HH Filter AddOn – One-Click Filters for HellHades Optimiser
 
-A Tampermonkey userscript that enhances filtering and related UI interactions for HH.
+Enhance your experience on the HellHades Raid Optimiser with fast, reliable, one-click filtering.
 
-## Features
+This userscript reduces repetitive actions and improves efficiency when working with artifacts and accessories.
 
-- Adds helper functionality for filtering workflows
-- Speeds up repetitive actions
-- Designed for easier day-to-day usage
+---
 
-## Requirements
+## ✅ Features
 
-- A browser with the Tampermonkey extension installed
+- One-click preset filters (Dragon, Fire Knight, Ice Golem, etc.)
+- Quick faction selection
+- Automated accessory filtering (Ring, Amulet, Banner)
+- Instant filter reset
+- Works with dynamic dropdowns and overlays
 
-## Installation
+---
 
-### Direct install
-Open this link in your browser after Tampermonkey is installed:
+## ⚡ Benefits
 
-https://raw.githubusercontent.com/sirsanta2016/hhFilterAddOn/main/src/hhfilteraddon.user.js
+- Reduces 20–30 manual clicks to a single action  
+- Saves time during gear optimization  
+- Improves consistency and usability  
 
-Tampermonkey should detect the script and open the install screen.
+---
 
-## Repository
+## 🔒 Safety & Compatibility
 
-GitHub repository:
-https://github.com/sirsanta2016/hhFilterAddOn
+- Runs only on: https://raidoptimiser.hellhades.com/  
+- No data collection  
+- No external requests  
+- No ads or tracking  
+- Open source  
 
-## How to use
+---
 
-1. Install the userscript in Tampermonkey
-2. Open the target website
-3. Use the additional filtering/helper functionality provided by the script
+## 📦 Installation
 
-## Updating
+1. Install a userscript manager (e.g., Tampermonkey)  
+2. Install this script via Greasy Fork  
+3. Open HellHades Optimiser and use the new controls  
 
-The script is configured to update from GitHub.  
-When a new version is pushed and the `@version` field is increased, Tampermonkey should detect the update.
+---
 
-## Support
+## 🛠️ Support & Source Code
 
-If you find a bug or want to request an enhancement, open an issue here:
+GitHub repository:  
+https://github.com/sirsanta2016/hhFilterAddOn  
 
-https://github.com/sirsanta2016/hhFilterAddOn/issues
+---
 
-## Changelog
+## 📌 Disclaimer
 
-### 1.0.0
-- Initial public release
+This script is an independent enhancement and is not affiliated with HellHades.
