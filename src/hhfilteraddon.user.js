@@ -43,7 +43,7 @@
     ],
     '9 pcs': [
       'Mercurial', 'Chronophage', 'Rebirth', 'Stonecleaver', 'Pinpoint',
-      'Feral', 'Slayer', 'Merciless', 'Supersonic'
+      'Feral', 'Slayer', 'Merciless', 'Supersonic', 'Stone Skin', 'Protection'
     ],
     Forge: [
       'Swift Parry', 'Deflection', 'Resilience', 'Perception',
@@ -64,7 +64,7 @@
       'Relentless'
     ],
     Hydra: [
-      'Relentless'
+      'Protection', 'Stone Skin'
     ]
   
   };
