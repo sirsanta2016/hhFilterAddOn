@@ -62,7 +62,11 @@
     ],
     Tournament: [
       'Relentless'
+    ],
+    Hydra: [
+      'Relentless'
     ]
+  
   };
 
   const ARTIFACT_BUTTONS = [
@@ -76,6 +80,7 @@
     { name: 'Demon Lord', color: '#F54927' },
     { name: 'Clan Shop', color: '#4778D9' },
     { name: 'Tournament', color: '#3AD4BC' },
+    { name: 'Reset', color: '#f7d6184d' }
     { name: 'Reset', color: '#F74818' }
   ];
 
