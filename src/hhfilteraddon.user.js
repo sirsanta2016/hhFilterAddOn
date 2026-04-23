@@ -608,6 +608,10 @@
     return 'selected';
   }
 
+  function isArtifactsPage() {
+    return location.pathname.startsWith('/artifacts');
+  }
+
   function removeManagedButtons() {
     document.querySelectorAll('[data-tm-hardcoded-button="true"]').forEach(btn => btn.remove());
   }
@@ -781,6 +785,15 @@
   }
 
   async function refreshButtonsForMode() {
+    if (!isArtifactsPage()) {
+      state.mode = null;
+      state.activePreset = null;
+      state.phase = 'idle';
+      removeManagedButtons();
+      await ensureAllDropdownsClosed();
+      return;
+    }
+
     const mode = getCurrentMode();
     if (state.mode === mode) return;
 
@@ -803,10 +816,13 @@
 
   async function init() {
     await waitFor(() => document.body, 10000);
-
+  
     await ensureAllDropdownsClosed();
-    await refreshButtonsForMode();
-
+  
+    if (isArtifactsPage()) {
+      await refreshButtonsForMode();
+    }
+  
     setInterval(() => {
       refreshButtonsForMode().catch(console.error);
     }, 1200);
