@@ -2,7 +2,7 @@
 // @name         HH Raid Optimiser – One-Click Filters (Presets + Factions)
 // @namespace    https://github.com/sirsanta2016
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=hellhades.com
-// @version      1.0.1
+// @version      1.1.0
 // @description  Adds one-click preset filters and faction selectors to the HellHades Raid Optimiser, making artifact and accessory management faster and easier.
 // @author       sirsanta2016
 // @match        https://raidoptimiser.hellhades.com/*
@@ -10,7 +10,8 @@
 // @homepageURL  https://github.com/sirsanta2016/hhFilterAddOn
 // @supportURL   https://github.com/sirsanta2016/hhFilterAddOn/issues
 // @license      MIT
-// @grant        none
+// @grant        GM_xmlhttpRequest
+// @connect      hellhades.com
 // ==/UserScript==
 
 (function () {
@@ -108,6 +109,169 @@
     phase: 'idle',
     mode: null
   };
+  const HH_RATING_CACHE = new Map();
+
+  function isChampionsPage() {
+    return location.pathname.startsWith('/champions');
+  }
+
+  function buildHellHadesSlugFromHero(heroRow) {
+    const avatar = heroRow.querySelector('img.hero_avatar');
+
+    if (avatar?.src) {
+      const fileName = avatar.src.split('/').pop().replace('.png', '');
+
+    return fileName
+     .replace(/the([A-Z])/g, 'The$1')
+     .replace(/([a-z])([A-Z])/g, '$1-$2')
+     .toLowerCase();
+    }
+
+    const name = heroRow.querySelector('h3')?.textContent?.trim();
+    if (!name) return null;
+
+    return name
+      .toLowerCase()
+      .replace(/['’]/g, '')
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '');
+  }
+
+function fetchHellHadesRating(slug) {
+  if (HH_RATING_CACHE.has(slug)) {
+    return Promise.resolve(HH_RATING_CACHE.get(slug));
+  }
+
+  const pageUrl = `https://hellhades.com/raid/champions/${slug}/`;
+
+  return new Promise(resolve => {
+    GM_xmlhttpRequest({
+      method: 'GET',
+      url: pageUrl,
+      onload: pageResponse => {
+        const html = pageResponse.responseText;
+
+        const championIdMatch = html.match(/wp-json\/wp\/v2\/champions\/(\d+)/i);
+        const championId = championIdMatch ? championIdMatch[1] : null;
+
+        console.log('[HH CHAMPION ID]', slug, championId);
+
+        if (!championId) {
+          HH_RATING_CACHE.set(slug, 'N/A');
+          resolve('N/A');
+          return;
+        }
+
+        const apiUrl = `https://hellhades.com/wp-json/hh-api/v3/raid/ratings/${championId}`;
+
+        GM_xmlhttpRequest({
+          method: 'GET',
+          url: apiUrl,
+          onload: ratingResponse => {
+            try {
+              const data = JSON.parse(ratingResponse.responseText);
+
+              console.log('[HH API DATA]', slug, data);
+
+              const ratingObject = Array.isArray(data)
+                ? data.find(item => item.form === '1') || data[0]
+                : data;
+
+              const rawRating = Number(ratingObject?.overall_user);
+
+              const rating = Number.isFinite(rawRating)
+                ? (rawRating / 2).toFixed(1)
+                : 'N/A';
+
+              console.log('[HH FINAL]', slug, rating);
+
+              HH_RATING_CACHE.set(slug, rating);
+              resolve(rating);
+            } catch (err) {
+              console.log('[HH RATING PARSE ERROR]', slug, err);
+
+              HH_RATING_CACHE.set(slug, 'N/A');
+              resolve('N/A');
+            }
+          },
+          onerror: err => {
+            console.log('[HH RATING REQUEST ERROR]', slug, err);
+
+            HH_RATING_CACHE.set(slug, 'N/A');
+            resolve('N/A');
+          }
+        });
+      },
+      onerror: err => {
+        console.log('[HH PAGE REQUEST ERROR]', slug, err);
+
+        HH_RATING_CACHE.set(slug, 'N/A');
+        resolve('N/A');
+      }
+    });
+  });
+}
+
+  function injectOverallRating(heroRow, rating) {
+    const titleContainer = heroRow.querySelector('.hero_title_container_left');
+    if (!titleContainer) return;
+
+    let badge = heroRow.querySelector('.hh-addon-overall-rating');
+
+    if (!badge) {
+      badge = document.createElement('div');
+      badge.className = 'hh-addon-overall-rating';
+      titleContainer.appendChild(badge);
+    }
+
+    badge.innerHTML = `HH Overall: <strong>${rating}</strong> ★`;
+  }
+
+  async function processChampionRatings() {
+    if (!isChampionsPage()) return;
+
+    const heroRows = document.querySelectorAll('app-hero.hero-row');
+
+    for (const heroRow of heroRows) {
+      if (heroRow.dataset.hhOverallRatingProcessed === 'true') continue;
+
+      heroRow.dataset.hhOverallRatingProcessed = 'true';
+
+      const slug = buildHellHadesSlugFromHero(heroRow);
+      if (!slug) continue;
+
+      injectOverallRating(heroRow, '...');
+
+      const rating = await fetchHellHadesRating(slug);
+      injectOverallRating(heroRow, rating);
+    }
+  }
+
+  function addOverallRatingStyle() {
+    if (document.getElementById('hh-addon-overall-rating-style')) return;
+
+    const style = document.createElement('style');
+    style.id = 'hh-addon-overall-rating-style';
+    style.textContent = `
+      .hh-addon-overall-rating {
+        margin-top: 4px;
+        font-size: 12px;
+        font-weight: 700;
+        color: #ffd166;
+        background: rgba(0, 0, 0, 0.35);
+        border: 1px solid rgba(255, 209, 102, 0.5);
+        border-radius: 6px;
+        padding: 2px 6px;
+        width: fit-content;
+      }
+
+      .hh-addon-overall-rating strong {
+        color: #ffffff;
+      }
+    `;
+
+    document.head.appendChild(style);
+  }
 
   function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -198,17 +362,16 @@
     );
   }
 
-  function fireMouseSequence(el) {
-    const events = ['pointerdown', 'mousedown', 'pointerup', 'mouseup', 'click'];
+function fireMouseSequence(el) {
+  const events = ['pointerdown', 'mousedown', 'pointerup', 'mouseup', 'click'];
 
-    for (const type of events) {
-      el.dispatchEvent(new MouseEvent(type, {
-        bubbles: true,
-        cancelable: true,
-        view: window
-      }));
-    }
+  for (const type of events) {
+    el.dispatchEvent(new MouseEvent(type, {
+      bubbles: true,
+      cancelable: true
+    }));
   }
+}
 
   async function runDropdownOperationInvisible(operationFn) {
     try {
@@ -817,14 +980,25 @@
   async function init() {
     await waitFor(() => document.body, 10000);
   
+    addOverallRatingStyle();
     await ensureAllDropdownsClosed();
   
     if (isArtifactsPage()) {
       await refreshButtonsForMode();
     }
   
+    if (isChampionsPage()) {
+      await processChampionRatings();
+    }
+  
     setInterval(() => {
-      refreshButtonsForMode().catch(console.error);
+      if (isArtifactsPage()) {
+        refreshButtonsForMode().catch(console.error);
+      }
+    
+      if (isChampionsPage()) {
+        processChampionRatings().catch(console.error);
+      }
     }, 1200);
   }
 
@@ -839,6 +1013,9 @@
       state.activePreset = null;
       state.phase = 'idle';
       await refreshButtonsForMode();
+     if (isChampionsPage()) {
+       await processChampionRatings();
+      }
     }
   });
 
