@@ -1,21 +1,92 @@
-MIT License
+HH Filter AddOn – License
 
-Copyright (c) 2026 sirsanta2016
+This work is licensed under the Creative Commons Attribution-NonCommercial 4.0 International License.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+You are free to:
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+- Share — copy and redistribute the material in any medium or format
+- Adapt — remix, transform, and build upon the material
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+Under the following terms:
+
+- Attribution — You must give appropriate credit, provide a link to the original source, and indicate if changes were made.
+- NonCommercial — You may not use the material for commercial purposes.
+
+Full license text: https://creativecommons.org/licenses/by-nc/4.0/
+
+---------------------------------------------------------------------
+
+ADDITIONAL TERMS AND CLARIFICATIONS
+
+The following terms are added to clarify acceptable use of this project:
+
+1. PERMITTED USE
+
+The following uses are explicitly allowed:
+
+- Personal, non-commercial use
+- Modification for personal use
+- Sharing with proper attribution and a link to the original repository
+- Showcasing the script in content such as:
+  - YouTube videos
+  - Twitch streams
+  - Tutorials, guides, and reviews
+
+Content creators may include this script in monetized content (e.g., ad revenue, sponsorships), provided that:
+
+- The script itself is not sold
+- The script is not redistributed as part of a paid product
+- Proper credit is given to the original author
+
+---------------------------------------------------------------------
+
+2. PROHIBITED USE
+
+The following uses are strictly prohibited without explicit written permission:
+
+- Selling this script or access to it
+- Including this script in paid tools, SaaS platforms, or commercial services
+- Bundling this script into paid packages, courses, or downloadable products
+- Repackaging, rebranding, or redistributing this script as your own work
+- Charging for installation, access, or usage of this script
+
+---------------------------------------------------------------------
+
+3. COMMERCIAL LICENSING
+
+If you wish to use this script in any commercial context, including but not limited to:
+
+- Integration into a paid platform
+- Use within a SaaS product
+- Distribution as part of a commercial offering
+
+You must obtain explicit written permission from the author.
+
+Contact: (add your preferred contact method here)
+
+---------------------------------------------------------------------
+
+4. DISCLAIMER
+
+This software is provided "as is", without warranty of any kind, express or implied, including but not limited to:
+
+- Fitness for a particular purpose
+- Non-infringement
+- Reliability or availability
+
+The author shall not be held liable for any damages arising from the use of this software.
+
+---------------------------------------------------------------------
+
+5. ATTRIBUTION
+
+When sharing or referencing this project, you must include:
+
+- The original repository link:
+  https://github.com/sirsanta2016/hhFilterAddOn
+
+- A clear indication that the original work belongs to the author
+
+---------------------------------------------------------------------
+
+END OF TERMS

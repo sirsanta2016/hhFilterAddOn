@@ -9,7 +9,7 @@
 // @run-at       document-idle
 // @homepageURL  https://github.com/sirsanta2016/hhFilterAddOn
 // @supportURL   https://github.com/sirsanta2016/hhFilterAddOn/issues
-// @license      MIT
+// @license CC BY-NC 4.0 + Custom Terms
 // @grant        GM_xmlhttpRequest
 // @connect      hellhades.com
 // ==/UserScript==
