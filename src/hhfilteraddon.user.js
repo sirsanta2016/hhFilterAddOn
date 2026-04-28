@@ -71,38 +71,68 @@
   };
 
   const ARTIFACT_BUTTONS = [
-    { name: 'Dragon', color: '#8b0000' },
-    { name: 'IG', color: '#1f5aa6' },
-    { name: 'Fire Knight', color: '#7a4b00' },
-    { name: 'Accessories', color: '#5a2d82' },
-    { name: '9 pcs', color: '#2e8b57' },
-    { name: 'Forge', color: '#b8860b' },
-    { name: 'Arena', color: '#F5B027' },
-    { name: 'Demon Lord', color: '#F54927' },
-    { name: 'Clan Shop', color: '#4778D9' },
-    { name: 'Tournament', color: '#3AD4BC' },
-    { name: 'Hydra', color: '#f7d6184d' },
-    { name: 'Reset', color: '#F74818' }
+    { name: 'Dragon', color: '#303030' },
+    { name: 'IG', color: '#303030' },
+    { name: 'Fire Knight', color: '#303030' },
+    { name: 'Accessories', color: '#303030' },
+    { name: '9 pcs', color: '#303030' },
+    { name: 'Forge', color: '#303030' },
+    { name: 'Arena', color: '#303030' },
+    { name: 'Demon Lord', color: '#303030' },
+    { name: 'Clan Shop', color: '#303030' },
+    { name: 'Tournament', color: '#303030' },
+    { name: 'Hydra', color: '#303030' },
+    { name: 'Reset', color: '#303030' }
   ];
 
   const FACTION_BUTTONS = [
-    { name: 'Argonites', bottom: 20, color: '#1f6f8b' },
-    { name: 'Banner Lords', bottom: 70, color: '#7b1e1e' },
-    { name: 'Barbarians', bottom: 120, color: '#7b3c1e' },
-    { name: 'Dark Elves', bottom: 170, color: '#4a2a6b' },
-    { name: 'Demonspawn', bottom: 220, color: '#6a1f55' },
-    { name: 'Dwarves', bottom: 270, color: '#7a5a2a' },
-    { name: 'High Elves', bottom: 320, color: '#1e4f7b' },
-    { name: 'Knight Revenant', bottom: 370, color: '#5e5e5e' },
-    { name: 'Lizardmen', bottom: 420, color: '#2c7b4f' },
-    { name: 'Ogryn Tribes', bottom: 470, color: '#4a5c2a' },
-    { name: 'Orcs', bottom: 520, color: '#2f6b2f' },
-    { name: 'Shadowkin', bottom: 570, color: '#2a2a2a' },
-    { name: 'Skinwalkers', bottom: 620, color: '#6b4d2e' },
-    { name: 'Sylvan Watchers', bottom: 670, color: '#2d6a4f' },
-    { name: 'The Sacred Order', bottom: 720, color: '#7b5a1e' },
-    { name: 'Undead Hordes', bottom: 770, color: '#46506a' }
+    { name: 'Argonites', bottom: 20, color: '#303030' },
+    { name: 'Banner Lords', bottom: 70, color: '#303030' },
+    { name: 'Barbarians', bottom: 120, color: '#303030' },
+    { name: 'Dark Elves', bottom: 170, color: '#303030' },
+    { name: 'Demonspawn', bottom: 220, color: '#303030' },
+    { name: 'Dwarves', bottom: 270, color: '#303030' },
+    { name: 'High Elves', bottom: 320, color: '#303030' },
+    { name: 'Knight Revenant', bottom: 370, color: '#303030' },
+    { name: 'Lizardmen', bottom: 420, color: '#303030' },
+    { name: 'Ogryn Tribes', bottom: 470, color: '#303030' },
+    { name: 'Orcs', bottom: 520, color: '#303030' },
+    { name: 'Shadowkin', bottom: 570, color: '#303030' },
+    { name: 'Skinwalkers', bottom: 620, color: '#303030' },
+    { name: 'Sylvan Watchers', bottom: 670, color: '#303030' },
+    { name: 'The Sacred Order', bottom: 720, color: '#303030' },
+    { name: 'Undead Hordes', bottom: 770, color: '#303030' }
   ];
+
+  const supportButton = document.createElement("a");
+  supportButton.textContent = "Support ☕";
+  supportButton.href = "https://buymeacoffee.com/sirsanta2016";
+  supportButton.target = "_blank";
+  supportButton.rel = "noopener noreferrer";
+  
+  supportButton.style.cssText = `
+    position: fixed;
+    top: 12px;
+    right: 12px;
+    z-index: 999999;
+    background: #ffdd00;
+    color: #111;
+    padding: 6px 10px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+    opacity: 0.75;
+    transition: opacity 0.2s ease, transform 0.15s ease;
+  `;
+
+  supportButton.addEventListener("mouseenter", () => {
+    supportButton.style.opacity = "1";
+    supportButton.style.transform = "scale(1.05)";
+  });
+
+  document.body.appendChild(supportButton);
 
   const state = {
     activePreset: null,
