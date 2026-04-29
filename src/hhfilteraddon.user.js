@@ -100,7 +100,17 @@
     supportButton.style.transform = 'scale(1.05)';
   });
 
-  document.body.appendChild(supportButton);
+  function toggleSupportButton(show) {
+    if (show) {
+      if (!document.body.contains(supportButton)) {
+        document.body.appendChild(supportButton);
+      }
+    } else {
+      if (document.body.contains(supportButton)) {
+        supportButton.remove();
+      }
+    }
+  }
 
   const state = { activePreset: null, phase: 'idle', mode: null };
   const HH_RATING_CACHE = new Map();
@@ -240,5 +250,4 @@
     }
   }
 
-  // (rest unchanged…)
 })();
